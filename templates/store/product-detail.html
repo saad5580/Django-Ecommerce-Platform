@@ -1,6 +1,8 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
+<section class ="section-content padding-y bg">
+<div class="container">
 <!-- ============================ COMPONENT 1 ================================= -->
 <div class="card">
 	<div class="row no-gutters">
@@ -65,11 +67,29 @@
 	{% if single_product.stock <= 0 %}
 		<h5>Out of Stock</h5>
 	{% else%}
-		<a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+		{% if in_cart%}
+		<div>
+			<a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary">
+				<span class="text">Add to Cart</span>
+				<i class="fas fa-shopping-cart"></i>
+			</a>
+			<a href="{% url 'cart' %}" class="btn btn-outline-primary">
+				<span class="text">View Cart</span>
+				<i class="fas fa-eye"></i>
+			</a>
+			<div style="margin-top: 10px;">
+				<h6 style="color: grey;">Already in Cart</h6>
+			</div>
+		</div>
+		{% else %}
+		<a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+		{% endif %}
 	{% endif %}
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
 	</div> <!-- row.// -->
 </div> <!-- card.// -->
 <!-- ============================ COMPONENT 1 END .// ================================= -->
+</div>
+</section>
 {% endblock %}
