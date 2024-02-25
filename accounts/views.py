@@ -13,7 +13,8 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate
-
+from carts.views import _cart_id
+from carts.models import Cart, CartItem
 
 
 
@@ -64,17 +65,50 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        # print(f'{email} and {password}')
 
         # Authenticate user
 
         user = authenticate(email=email, password=password)
-        user_object = Account.objects.get(email = email)
-        print(f'The email queries is {user_object.email}:{email} with the password as {user_object.password}:{password}')
-        # something = (email == user_object.email) and (user_object.password == password)
-        print(f'But when using the autentication method. The result is: {user}')
 
         if user is not None:
+            try:
+                # fetching cart, to get cart item from guest mode. To add it to user account
+                cart = Cart.objects.get(cart_id = _cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart)
+
+                if is_cart_item_exists: # if a cart exists meaning item added to cart
+                    cart_item = CartItem.objects.filter(cart =cart) # then get the item from that cart
+                    product_variation = []
+                    for item in cart_item:
+                        variation = item.variations.all()
+                        product_variation.append(list(variation))
+
+                    # get the car itme from the user to access 
+                    cart_item = CartItem.objects.filter(user = user)
+                    # existing variations -> data base
+                    # current variations -> product_variaitons
+                    # item_id -> database
+                    ex_var_list = []
+                    id = []
+                    for item in cart_item:
+                        existing_variation = item.variations.all()
+                        ex_var_list.append(list(existing_variation))
+                        id.append(item.id)
+
+                    for pr in product_variation:
+                        if pr in ex_var_list:
+                            index = ex_var_list.index(pr)
+                            item_id = id[index]
+                            item = CartItem.objects.get(id=item_id)
+                            item.quantity += 1
+                            item.save()
+                        else:
+                            cart_item = CartItem.objects.filter(cart=cart)
+                            for item in cart_item:
+                                item.user = user
+                                item.save()
+            except:
+                pass
             # User is authenticated, log them in
             auth.login(request, user)
             messages.success(request, 'You are successfully logged in')
