@@ -116,7 +116,7 @@ def login(request):
             url = request.META.get('HTTP_REFERER')
 
             try:
-                print('Entered the proper try bloclk')
+                
                 query = requests.utils.urlparse(url).query
                 params = dict(x.split('=') for x in query.split('&'))
                 if 'next' in params:
@@ -126,7 +126,7 @@ def login(request):
             except:
                 return redirect('dashboard')
         else:
-            print('Entering invalid wala else block')
+            
             # Invalid credentials
             messages.error(request, 'Invalid credentials, Please try again.')
             return redirect('login')
