@@ -1,11 +1,12 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from store.models import Product
-from carts.models import Cart, CartItem
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from store.models import Product, Variation
+from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
-from  store.models import Variation
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+from django.http import HttpResponse
+
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
@@ -49,7 +50,11 @@ def add_cart(request, product_id):
                 item.save()
 
             else:
-                item = CartItem.objects.create(product=product, quantity=1, user=current_user)
+                try:
+                    cart = Cart.objects.get(cart_id=_cart_id(request))
+                except Cart.DoesNotExist:
+                    cart = Cart.objects.create(cart_id=_cart_id(request))
+                item = CartItem.objects.create(product=product, quantity=1, user=current_user, cart = cart)
                 if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
@@ -148,6 +153,7 @@ def remove_cart(request, product_id, cart_item_id):
         pass
     return redirect('cart')
 
+
 def remove_cart_item(request, product_id, cart_item_id):
     product = get_object_or_404(Product, id=product_id)
     if request.user.is_authenticated:
@@ -185,7 +191,8 @@ def cart(request, total=0, quantity=0, cart_items=None):
     }
     return render(request, 'store/cart.html', context)
 
-@login_required(login_url = 'login')
+
+@login_required(login_url='login')
 def checkout(request, total=0, quantity=0, cart_items=None):
     try:
         tax = 0
