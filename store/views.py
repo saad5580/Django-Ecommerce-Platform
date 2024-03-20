@@ -82,7 +82,7 @@ def submit_review(request, product_id):
             reviews = ReviewRating.objects.get(user__id=request.user.id, product__id=product_id)
             form = ReviewForm(request.POST, instance=reviews)
             form.save()
-            messages.success(request, 'Thank you! Your review has been updated.')
+            messages.success(request, 'Thank you! Your review has been updated. and now these are the changes to commit')
             return redirect(url)
         except ReviewRating.DoesNotExist:
             form = ReviewForm(request.POST)
