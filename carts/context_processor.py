@@ -18,3 +18,12 @@ def counter(request):
             cart_count = 0
 
     return dict(cart_count = cart_count)
+
+
+# base_context_processors.py
+
+# Context processor
+
+# def session_expired(request):
+#     session_is_expired = request.session.get("session_expired", False)  
+#     return {"session_expired": session_is_expired}
