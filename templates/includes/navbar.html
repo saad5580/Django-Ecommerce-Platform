@@ -1,4 +1,18 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link href="{%static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+    <link  rel="stylesheet" href="{%static 'static/css/custom.css'%}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <!-- Other CSS and JS links -->
+</head>
+
+
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
     <div class="container">
@@ -33,8 +47,8 @@
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
             <div class="category-wrap dropdown d-inline-block float-right">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
-                    <i class="fa fa-bars"></i> All category 
+                <button type="button" class="btn btn-link" data-toggle="dropdown" style="background-color: transparent; color: black;"> 
+                    <i class="fa fa-bars"></i>
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{% url 'store' %}">All Products</a>
@@ -44,39 +58,37 @@
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
-        <a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
-        <div class="col-lg  col-md-6 col-sm-12 col">
-            <form action="{% url 'search'%}" class="search" method = 'GET'>
-                <div class="input-group w-100">
-                    <input type="text" class="form-control" style="width:60%;" placeholder="Search" name='keyword'>
-                    
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">
-                        <i class="fa fa-search"></i>
-                      </button>
+        <a href="{% url 'store' %}" class="btn btn-link" style="color: black; text-decoration: none;">Store</a>
+
+                    {% if user.id is None %}
+                    <div class="widget-header">
+                        <div style="padding: 5px 0;"> <!-- Inline padding for the div -->
+                            <a href="{% url 'login' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Sign in</a> 
+                            <a href="{% url 'register' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Register</a>
+                        </div>
                     </div>
+                    {% else %}
+                    <div class="widget-header">
+                        <div style="padding: 5px 0;"> <!-- Inline padding for the div -->
+                            <a href="{% url 'dashboard' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Dashboard</a> 
+                            <a href="{% url 'logout' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Logout</a>
+                        </div>
+                    </div>
+                    {% endif %}
+        
+
+
+        <div class="col-lg col-md-6 col-sm-12 col">
+            <form action="{% url 'search' %}" class="search" method="GET">
+                <div class="input-group" style="width: 250px;"> <!-- Adjust width here -->
+                    <input type="text" class="form-control search-bar" style="width: 100%; outline: none;" placeholder="Search" name="keyword">
                 </div>
             </form> <!-- search-wrap .end// -->
-        </div> <!-- col.// -->
+        </div> <!-- col.// -->      
+
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                        {% if user.id is None%}
-                        <div class="widget-header">
-                            <small class="title text-muted">Welcome guest!</small>
-                            <div> 
-                                <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'register' %}"> Register</a>
-                            </div>
-                        </div>
-                        {% else %}
-                        <div class="widget-header">
-                            <small class="title text-muted">Welcome {{user.first_name}}!</small>
-                            <div> 
-                                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'logout' %}"> Logout</a>
-                            </div>
-                        </div>
-                        {% endif %}
+                        
                         <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
