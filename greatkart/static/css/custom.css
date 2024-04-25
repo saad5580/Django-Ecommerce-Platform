@@ -59,3 +59,34 @@
     height: 80px;
     border: 1px solid grey;
   }
+
+/* General styles for links within the widget-header */
+.widget-header div {
+  padding: 5px 0 !important;
+}
+
+.auth-link {
+  color: #666 !important; /* Subtle grey */
+  text-decoration: none !important;
+  margin-right: 15px !important;
+  font-weight: 500 !important;
+}
+
+/* Hover effect for links */
+.auth-link:hover {
+  color: #2c2c2c !important; /* Darker grey on hover */
+}
+
+.store-button:hover{
+  color: #2c2c2c !important; /* Darker grey on hover */
+}
+
+/* Increase the size of the logo */
+/* Adjusting the logo class for better height management */
+/* Custom row styling to increase height */
+.logo-row {
+  min-height: 120px;  /* Adjust this value based on your logo size */
+}
+
+
+

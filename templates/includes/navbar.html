@@ -29,6 +29,7 @@
                 <a href="#" class="nav-link"> USD </a>
             </li>
         </ul>
+        
         <ul class="navbar-nav">
             <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
             <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
@@ -39,52 +40,54 @@
     
     <section class="header-main border-bottom">
         <div class="container">
-    <div class="row align-items-center">
+    <div class="row align-items-center logo-row">
         <div class="col-lg-2 col-md-3 col-6">
             <a href="{% url 'home' %}" class="brand-wrap">
-                <img class="logo" src="{% static './images/logo.png' %}">
+                <img class="logo" src="{% static './images/logo_2.png' %}">
             </a> <!-- brand-wrap.// -->
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
             <div class="category-wrap dropdown d-inline-block float-right">
-                <button type="button" class="btn btn-link" data-toggle="dropdown" style="background-color: transparent; color: black;"> 
+                <button type="button" class="btn btn-link" data-toggle="dropdown" style="background-color: transparent; border: none; padding: 0; color: #333; font-size: 16px;">
                     <i class="fa fa-bars"></i>
                 </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'store' %}">All Products</a>
+                <div class="dropdown-menu" style="border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-size: 14px;">
+                    <a class="dropdown-item" href="{% url 'store' %}" style="color: #333; padding: 8px 20px;">All Products</a>
                     {% for category in links %}
-                    <a class="dropdown-item" href="{{ category.get_url }}">{{category.category_name}}</a>
+                    <a class="dropdown-item" href="{{ category.get_url }}" style="color: #333; padding: 8px 20px;">{{ category.category_name }}</a>
                     {% endfor %}
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
-        <a href="{% url 'store' %}" class="btn btn-link" style="color: black; text-decoration: none;">Store</a>
+        
+        <a href="{% url 'store' %}" class="btn btn-link store" style="color: #666; text-decoration: none">Store</a>
 
                     {% if user.id is None %}
                     <div class="widget-header">
-                        <div style="padding: 5px 0;"> <!-- Inline padding for the div -->
-                            <a href="{% url 'login' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Sign in</a> 
-                            <a href="{% url 'register' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Register</a>
+                        <div>
+                            <a href="{% url 'login' %}" class="auth-link">Sign in</a> 
+                            <a href="{% url 'register' %}" class="auth-link">Register</a>
                         </div>
                     </div>
                     {% else %}
                     <div class="widget-header">
-                        <div style="padding: 5px 0;"> <!-- Inline padding for the div -->
-                            <a href="{% url 'dashboard' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Dashboard</a> 
-                            <a href="{% url 'logout' %}" style="color: #666; text-decoration: none; margin-right: 15px; font-weight: 500;" onmouseover="this.style.color='#333'" onmouseout="this.style.color='#666'">Logout</a>
+                        <div>
+                            <a href="{% url 'dashboard' %}" class="auth-link">Dashboard</a> 
+                            <a href="{% url 'logout' %}" class="auth-link">Logout</a>
                         </div>
                     </div>
                     {% endif %}
         
 
 
-        <div class="col-lg col-md-6 col-sm-12 col">
-            <form action="{% url 'search' %}" class="search" method="GET">
-                <div class="input-group" style="width: 250px;"> <!-- Adjust width here -->
-                    <input type="text" class="form-control search-bar" style="width: 100%; outline: none;" placeholder="Search" name="keyword">
-                </div>
-            </form> <!-- search-wrap .end// -->
-        </div> <!-- col.// -->      
+                    <div class="col-lg col-md-6 col-sm-12 col">
+                        <form action="{% url 'search' %}" class="search" method="GET">
+                            <div class="input-group" style="width: 250px;"> <!-- Adjust width here -->
+                                <input type="text" class="form-control search-bar" style="width: 100%; outline: none; border-radius: 30px;" placeholder="Search" name="keyword">
+                            </div>
+                        </form> <!-- search-wrap .end// -->
+                    </div> <!-- col.// -->
+                         
 
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
