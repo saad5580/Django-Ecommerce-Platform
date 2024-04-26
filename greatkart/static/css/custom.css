@@ -84,9 +84,6 @@
 /* Increase the size of the logo */
 /* Adjusting the logo class for better height management */
 /* Custom row styling to increase height */
-.logo-row {
-  min-height: 120px;  /* Adjust this value based on your logo size */
-}
 
 
 
