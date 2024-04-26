@@ -14,7 +14,7 @@
 
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
-    <div class="container">
+    <div class="container" style="width: 80% !important; padding: 0 !important; max-width: none !important;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,7 +38,7 @@
     </nav>
     
     <section class="header-main border-bottom">
-        <div class="container">
+        <div class="container" style="width: 80% !important; padding: 0 !important; max-width: none !important;">
     <div class="row align-items-center ">
         <div class="col-lg-1 col-md-2 col-5" style="height: 80px;"> <!-- Reduced column width -->
             <a href="{% url 'home' %}" class="brand-wrap" style="display: block; height: 100%; text-align: center;">
@@ -46,7 +46,7 @@
             </a> <!-- brand-wrap.// -->
         </div>
         
-        <div class="col-lg col-sm col-md col-6 flex-grow-0">
+        <div class="col-lg col-sm col-md col-6 flex-grow-0" style="margin-right: 20px;">
             <div class="category-wrap dropdown d-inline-block float-right">
                 <button type="button" class="btn btn-link" data-toggle="dropdown" style="background-color: transparent; border: none; padding: 0; color: #333; font-size: 16px;">
                     <i class="fa fa-bars"></i>
@@ -60,7 +60,7 @@
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
         
-        <a href="{% url 'store' %}" class="btn btn-link auth-link store" style="margin-right: 0;">Store</a>
+        <a href="{% url 'store' %}" class="auth-link" style="margin-right: 20px;">Store</a>
 
 
                     {% if user.id is None %}
@@ -91,7 +91,7 @@
                          
 
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
-                    <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                    <div class="d-flex justify-content-mid mb-3 mb-lg-0">
                         
                         <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>

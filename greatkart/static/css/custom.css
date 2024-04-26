@@ -81,9 +81,93 @@
   color: #2c2c2c !important; /* Darker grey on hover */
 }
 
-/* Increase the size of the logo */
-/* Adjusting the logo class for better height management */
-/* Custom row styling to increase height */
+/* main.css */
+
+/* Change color for all links */
+a {
+  color: #666; /* Replace #newColorCode with your desired hex color */
+}
+
+/* Change color for all buttons */
+button, .btn { /* Targeting button elements and any class="btn" */
+  background-color: #fffefe; /* Button background color */
+  color: #252424; /* Text color inside button */
+  border-color: #2c2c2c;
+}
+
+.btn:hover, button:hover {
+  background-color: #2c2c2c; /* Background color on hover */
+  border-color: transparent;
+}
+
+/* Change color for h3 and h4 headings */
+h3, h4 {
+  color: #666;
+}
+
+.checkbox-btn .btn-light:hover {
+  color: #fff; /* White text on hover */
+}
 
 
+/* Base styles for pagination links */
+.pagination .page-link {
+  color: #666; /* Light grey for normal state */
+  background-color: transparent; /* Ensures no background color */
+  border: 1px solid #ddd; /* Subtle border for all states */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Hover effect for pagination links */
+.pagination .page-link:hover {
+  color: #333; /* Dark grey or black on hover */
+  background-color: #b9b9b9;
+}
+
+/* Style for active pagination link */
+.pagination .page-item.active .page-link {
+  color: black; /* Dark grey or black for active state */
+  background-color: #b9b9b9; /* Remove default blue background */
+  border-color: #b9b9b9; /* Optional: darken border for active item */
+}
+
+.pagination{
+  font-weight: 500;
+}
+
+
+
+/* Base styles for the card and its content */
+.card {
+  border: 1px solid #ccc; /* Subtle border for the entire card */
+  color: #666; /* Default text color for non-button content */
+}
+
+/* Styles for all links within the card */
+.card a {
+  color: #666; /* Light grey text for links */
+  text-decoration: none; /* No underline */
+  transition: color 0.3s; /* Smooth transition for color change */
+  font-weight: 500;
+}
+
+/* Hover effect for links */
+.card a:hover {
+  color: #000000; /* Dark grey or black on hover */
+}
+
+/* Styles for buttons within the card */
+.card .btn {
+  background-color: #fff; /* White background for buttons */
+  color: #000; /* Black text for buttons */
+  border: 1px solid #000; /* Black border */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and color */
+}
+
+/* Hover effect for buttons */
+.card .btn:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
+  border: 1px solid #000; /* Maintain black border */
+}
 

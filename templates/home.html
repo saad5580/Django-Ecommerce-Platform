@@ -3,18 +3,60 @@
 {% block content %}
 
 
-
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Full Width Banner with Fade</title>
+	<style>
+		body, html {
+		  margin: 0;
+		  padding: 0;
+		  width: 100%; /* Ensures the body and html take full width */
+		}
+	  
+		.section-intro {
+		  width: 100%;
+		  padding: 0; /* Removes padding around the section */
+		}
+	  
+		.banner-container {
+		  width: 100%; /* Ensures container takes full width */
+		  padding: 0; /* Removes padding inside the container */
+		  max-width: none; /* This prevents any max-width from restricting the container's width */
+		}
+	  
+		.intro-banner-wrap {
+		  position: relative;
+		  width: 100%; /* Ensures the div takes full width */
+		  overflow: hidden;
+		}
+	  
+		.intro-banner-wrap img {
+		  width: 100%;
+		  height: auto; /* Maintain aspect ratio */
+		  display: block; /* Remove bottom space/gap */
+		}
+	  
+		.fade-out {
+		  position: absolute;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 20%; /* Height of the fade effect */
+		  background: linear-gradient(to bottom, transparent, white); /* Adjust color to match the page background */
+		}
+	  </style>
+</head>
 
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-intro padding-y-sm">
-<div class="container">
-
-<div class="intro-banner-wrap">
-	<img src="{% static 'images/banners/2.png' %}" class="img-fluid rounded">
-</div>
-
-</div> <!-- container //  -->
-</section>
+	<div class="banner-container">
+	  <div class="intro-banner-wrap">
+		<img src="{% static 'images/banners/2.png' %}" class="img-fluid rounded">
+		<div class="fade-out"></div>
+	  </div>
+	</div> <!-- container //  -->
+  </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <!-- ========================= SECTION  ========================= -->
