@@ -23,7 +23,8 @@
         <aside class="col-md-3">
             
     <div class="card">
-        <article class="filter-group">
+        <form action="{% url 'filter_price' %}" method="get">
+        <article class="filter-group">  
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
                     <i class="icon-control fa fa-chevron-down"></i>
@@ -50,26 +51,26 @@
                     <h6 class="title">Sizes </h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_4" style="">
+            <div class="filter-content collapse show" id="collapse_4">
                 <div class="card-body">
                   <label class="checkbox-btn">
-                    <input type="checkbox">
+                    <input type="checkbox" name="size" value="Extra Small">
                     <span class="btn btn-light"> XS </span>
                   </label>
     
                   <label class="checkbox-btn">
-                    <input type="checkbox">
+                    <input type="checkbox" name="size" value="Small">
                     <span class="btn btn-light"> SM </span>
                   </label>
     
                   <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> LG </span>
+                    <input type="checkbox" name="size" value="Medium">
+                    <span class="btn btn-light"> MD </span>
                   </label>
     
                   <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> XXL </span>
+                    <input type="checkbox" name="size" value="Large">
+                    <span class="btn btn-light"> LG </span>
                   </label>
             </div><!-- card-body.// -->
             </div>
@@ -85,38 +86,39 @@
             <div class="filter-content collapse show" id="collapse_3">
                 <div class="card-body">
                     
-                    <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Min</label>
-                      <!-- <input class="form-control" placeholder="$0" type="number"> -->
-                          <select class="mr-2 form-control">
-                            <option value="0">$0</option>
-                            <option value="50">$50</option>
-                            <option value="100">$100</option>
-                            <option value="150">$150</option>
-                            <option value="200">$200</option>
-                            <option value="500">$500</option>
-                            <option value="1000">$1000</option>
-                        </select>
-                    </div>
-                    <div class="form-group text-right col-md-6">
-                      <label>Max</label>
-                          <select class="mr-2 form-control">
-                            <option value="50">$50</option>
-                            <option value="100">$100</option>
-                            <option value="150">$150</option>
-                            <option value="200">$200</option>
-                            <option value="500">$500</option>
-                            <option value="1000">$1000</option>
-                            <option value="2000">$2000+</option>
-                        </select>
-                    </div>
-                    </div> <!-- form-row.// -->
-                    <button class="btn btn-block btn-primary">Apply</button>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Min</label>
+                                <select name="min_price" class="mr-2 form-control">
+                                    <option value="0">$0</option>
+                                    <option value="50">$50</option>
+                                    <option value="100">$100</option>
+                                    <option value="150">$150</option>
+                                    <option value="200">$200</option>
+                                    <option value="500">$500</option>
+                                    <option value="1000">$1000</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-right col-md-6">
+                                <label>Max</label>
+                                <select name="max_price" class="mr-2 form-control">
+                                    <option value="50">$50</option>
+                                    <option value="100">$100</option>
+                                    <option value="150">$150</option>
+                                    <option value="200">$200</option>
+                                    <option value="500">$500</option>
+                                    <option value="1000">$1000</option>
+                                    <option value="2000">$2000+</option>
+                                </select>
+                            </div>
+                        </div> <!-- form-row.// -->
+                        <button type="submit" class="btn btn-block btn-primary">Apply</button>
+                   
+                    
                 </div><!-- card-body.// -->
             </div>
         </article> <!-- filter-group .// -->
-        
+    </form>
     </div> <!-- card.// -->
     
         </aside> <!-- col.// -->
@@ -130,32 +132,30 @@
     </header><!-- sect-heading -->
     
     <div class="row">
-        {% if products%}
-        {% for product in products%}
+        {% if products %}
+        {% for product in products %}
         <div class="col-md-4">
             <figure class="card card-product-grid">
-                <div class="img-wrap"> 
-                    
-                    <img src="{{product.image.url}}">
-                    
+                <div class="img-wrap">
+    
+                    <a href="{{ product.get_url }}"><img src="{{ product.image.url }}"></a>
+    
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
-                        <a href="{{product.get_url}}" class="title">{{product.product_name}}</a>
+                        <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
                         <div class="price-wrap mt-2">
-                            <span class="price">{{product.price}}</span>
-                            <del class="price-old">$1198</del>
+                            <span class="price">$ {{ product.price }}</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    
-                    <a href="{{product.get_url}}" class="btn btn-block btn-primary">View Details</a>
+                    <a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details </a>
                 </figcaption>
             </figure>
-        </div> <!-- col.// -->   
-        {% endfor%}   
+        </div> <!-- col.// -->
+        {% endfor %}
         {% else %}
         <div>
-            <h2>No result found, Please try again later</h2>
+            <h2>No result found. Please try again.</h2>
         </div>
         {% endif %}
     </div> <!-- row end.// -->

@@ -171,3 +171,115 @@ h3, h4 {
   border: 1px solid #000; /* Maintain black border */
 }
 
+
+.checkbox-btn input[type="checkbox"] {
+  display: none;  /* Hide the checkbox */
+}
+
+.checkbox-btn span.btn.btn-light {
+  background-color: white; /* Default background */
+  color: black; /* Default text color */
+  border: 1px solid #ccc; /* Border to distinguish the button */
+  padding: 5px 10px; /* Some padding for visual appeal */
+  display: inline-block; /* Necessary to line them up inline */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+.checkbox-btn input[type="checkbox"]:checked + span.btn.btn-light {
+  background-color: black !important; /* Background color when checked */
+  color: white !important; /* Text color when checked */
+  border-color: black;
+}
+
+
+/* Styling for when the button is active or selected */
+figcaption .btn-primary:active,
+figcaption .btn-primary.selected { /* .selected class can be toggled by JavaScript */
+  background-color: black;
+  border-color: black;
+  color: white;
+}
+
+/* General styling for primary buttons */
+.btn-primary {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for visual changes */
+}
+
+/* Styling for primary buttons when active (during click) */
+.btn-primary:active {
+  background-color: black !important; /* Black background */
+  border-color: black !important; /* Black border */
+  color: white !important; /* White text */
+}
+
+/* Additional handling to remove any shadow or outline when clicked */
+.btn-primary:active,
+.btn-primary.selected, /* .selected class can be toggled by JavaScript */
+.btn-primary:focus:active {
+  box-shadow: none !important; /* Ensures no shadow when button is actively clicked */
+}
+
+
+div.dropdown-menu a.dropdown-item:focus {
+  background-color: black; /* Black background on hover/focus */
+  color: white !important; /* White text on hover/focus with !important to ensure override */
+}
+
+/* Active state style, using !important to ensure it takes precedence */
+div.dropdown-menu a.dropdown-item.active {
+  background-color: black !important; /* Black background for active items */
+  color: white !important; /* White text for active items */
+  outline: none; /* Remove outline if focused and active */
+}
+
+
+/* Default style for sidebar links */
+.aside-links {
+  color: grey; /* Default color */
+  transition: color 0.2s; /* Smooth transition for color change */
+}
+
+/* Hover and active styles for sidebar links */
+.aside-links:hover, .aside-links:active, .aside-links.active {
+  color: black; /* Color changes to black on hover or when active */
+}
+
+/* Default styling for sidebar links */
+.list-group-item {
+  color: #333; /* Default text color */
+  background-color: #f8f9fa; /* Light background, can be adjusted */
+  padding: 8px 20px; /* Uniform padding */
+  display: block; /* Ensure the links take up the full width of the container */
+  text-decoration: none; /* Remove underline from links */
+  transition: background-color 0.2s, color 0.2s; /* Smooth transition for color and background */
+}
+
+/* Styling for active state */
+.list-group-item.active, .list-group-item:hover {
+  background-color: black; /* Black background when active or hovered */
+  color: white; /* White text when active or hovered */
+  border-color: black;
+}
+
+.list-group-item:hover {
+  background-color: #666; /* Black background when active or hovered */
+  border: #666;
+}
+
+/* Override for specific button click (active) state */
+.btn-light:active {
+  background-color: black !important;  /* Ensures the background is black when clicked */
+  color: white !important;  /* Ensures text color is white when clicked */
+  border-color: black !important;  /* Ensures border color is black if needed */
+}
+
+
+/* Targeting the primary button specifically when it's focused or active */
+.btn-block:focus, .btn-block:active {
+  outline: none !important;  /* Removes the outline */
+  box-shadow: none !important;  /* Removes the box shadow */
+}
+
+.btn-light.btn-block:hover{
+  color: white !important;
+}

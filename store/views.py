@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib import messages
 from .forms import ReviewForm
-from .models import ReviewRating, ProductGallery
+from .models import ReviewRating, ProductGallery, Variation
 from orders.models import OrderProduct
 
 # Create your views here.
@@ -18,7 +18,7 @@ def store(request, category_slug = None):
 
     if category_slug != None: 
         categories = get_object_or_404(Category, slug = category_slug)
-        products = Product.objects.filter(category = categories, is_available = True)
+        products = Product.objects.filter(category = categories, is_available = True).order_by('price')
         paginator = Paginator(products, 1)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
@@ -102,3 +102,29 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
+            
+# views.py
+
+from django.shortcuts import render
+from .models import Product  # Import your product model
+
+from django.http import HttpResponseRedirect
+
+def filter_price(request):
+    min_price = request.GET.get('min_price', 0)
+    max_price = request.GET.get('max_price', 1000000)
+    selected_sizes = request.GET.getlist('size')  # Retrieves all 'size' checkbox values
+    products = Product.objects.filter(price__gte=min_price, price__lte=max_price)
+    if selected_sizes:
+        products = products.filter(variation__variation_category='size', variation__variation_value__in=selected_sizes, variation__is_active=True).distinct()
+
+    sizes = Variation.objects.sizes()
+    context = {             
+        'products': products,
+        'selected_min_price': min_price,
+        'selected_max_price': max_price,    
+        'selected_sizes': selected_sizes,
+        'sizes': sizes,
+    }
+    return render(request, 'store/store.html', context)
+
