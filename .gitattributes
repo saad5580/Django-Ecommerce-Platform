@@ -1,17 +1,18 @@
-# Set default behavior to automatically normalize line endings.
+# Set default behavior, all recognized text files get LF endings in the repo
 * text=auto
 
 # Specific text files to handle line endings upon checkout.
-*.py text
-*.html text
-*.css text
-*.js text
-*.txt text
-*.json text
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+# Specify LF explicitly to ensure consistency, even on Windows
 
 # Ensure scripts are checked out with appropriate line endings.
-*.sh text eol=lf
-*.bat text eol=crlf
+*.sh text eol=lf    # Shell scripts always get LF, crucial for Unix-like systems
+*.bat text eol=crlf # Batch files always get CRLF, required for Windows
 
 # Handle binary files explicitly to avoid corruption.
 *.png binary
