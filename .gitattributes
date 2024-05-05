@@ -1,0 +1,21 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# Specific text files to handle line endings upon checkout.
+*.py text
+*.html text
+*.css text
+*.js text
+*.txt text
+*.json text
+
+# Ensure scripts are checked out with appropriate line endings.
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Handle binary files explicitly to avoid corruption.
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary
