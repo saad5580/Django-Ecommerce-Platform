@@ -180,3 +180,8 @@ cython_debug/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .pem
+
+
+
+# Ignore Elastic Beanstalk ignore file
+.ebignore
