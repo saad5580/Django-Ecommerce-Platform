@@ -1,4 +1,4 @@
-#!/Users/saad/Library/CloudStorage/OneDrive-WilfridLaurierUniversity/Projects/Django Ecommerce/venvmac/bin/python3
+#!c:\users\saad\documents\projects\djangoecommerce\ebenv\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
