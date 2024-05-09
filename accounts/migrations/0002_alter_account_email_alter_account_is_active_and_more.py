@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
             model_name='account',
             name='is_active',
             field=models.BooleanField(default=False),
+            using="(CASE WHEN is_active IS NOT NULL THEN TRUE ELSE FALSE END)"
         ),
         migrations.AlterField(
             model_name='account',
