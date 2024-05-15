@@ -283,3 +283,21 @@ div.dropdown-menu a.dropdown-item.active {
 .btn-light.btn-block:hover{
   color: white !important;
 }
+
+
+
+@media (max-width: 991px) {
+  /* Adjustments for smaller screens */
+  .intro-banner-wrap{
+      margin-top: 50px; /* Increase padding for smaller screens if necessary */
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  /* Adjustments for smaller screens */
+  .intro-banner-wrap{
+      margin-top: 120px; /* Increase padding for smaller screens if necessary */
+  }
+}
