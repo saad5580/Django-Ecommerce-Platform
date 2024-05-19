@@ -39,8 +39,8 @@
     
     <section class="header-main border-bottom">
         <div class="container" style="width: 80% !important; padding: 0 !important; max-width: none !important;">
-    <div class="row align-items-center" style="height: 120px;">
-        <div class="col-lg-1 col-md-2 col-5" style="height: 120px;"> <!-- Reduced column width -->
+    <div class="row align-items-center " >
+        <div class="col-lg-1 col-md- col-3 logo" style="height: 120px;"> <!-- Reduced column width -->
             <a href="{% url 'home' %}" class="brand-wrap" style="display: block; height: 100%; text-align: center;">
                 <img class="logo" src="{% static './images/logo_2.png' %}" style="max-height: 100%; max-width: 100%;">
             </a> <!-- brand-wrap.// -->
@@ -78,15 +78,25 @@
                         </div>
                     </div>
                     {% endif %}
-
-
-                    <div class="col-lg col-md-6 col-sm-12 col">
-                        <form action="{% url 'search' %}" class="search" method="GET">
-                            <div class="input-group" style="width: 250px;"> <!-- Adjust width here -->
-                                <input type="text" class="form-control search-bar" style="width: 100%; outline: none; border-radius: 30px;" placeholder="Search" name="keyword">
+                    
+                    <div class="col-lg col-md-6 col-sm-6 col">
+                        <form action="{% url 'search' %}" class="search-form" method="GET">
+                        
+                            <div class="input-group w-100"><!-- Adjust width here -->
+                                <input type="text" class="form-control search-bar" style=" width: 100%; outline: none; border-radius: 30px;" placeholder="Search" name="keyword">
                             </div>
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
+
+                    <!-- <div class="col-lg  col-md-6 col-sm-12 col">
+                        <form action="{% url 'search' %}" class="search" method='GET'>
+                          <div class="input-group w-100">
+                              <input type="text" class="form-control" style="width:60%;" placeholder="Search" name="keyword">
+                    
+                              
+                            </div>
+                        </form>
+                      </div>  -->
                          
 
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">

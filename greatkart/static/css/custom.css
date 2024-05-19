@@ -286,18 +286,43 @@ div.dropdown-menu a.dropdown-item.active {
 
 
 
+
+
 @media (max-width: 991px) {
   /* Adjustments for smaller screens */
   .intro-banner-wrap{
       margin-top: 50px; /* Increase padding for smaller screens if necessary */
   }
+  .border-bottom{
+    border-bottom: none !important;
+  }
 }
 
+@media (min-width: 576px){
+  .search-form{
+    width: 200px;
+    margin-top: 10px;
+  }
 
+} 
 
 @media (max-width: 767px) {
   /* Adjustments for smaller screens */
   .intro-banner-wrap{
       margin-top: 120px; /* Increase padding for smaller screens if necessary */
+  }
+  
+  .search-bar{
+    width: 60%;
+  }
+
+
+}
+
+
+@media (min-width: 768px) and (max-width: 907px) {
+  .col-lg.col-md-6.col-sm-6.col,
+  .col-lg-3.col-sm-6.col-8.order-2.order-lg-3 {
+      padding-bottom: 20px;
   }
 }
