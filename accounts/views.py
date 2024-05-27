@@ -1,3 +1,4 @@
+from greatkart import settings
 from .forms import RegistrationForm, UserForm, UserProfileForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
@@ -21,6 +22,18 @@ import requests
 
 
 
+def verify_email(email):
+    url = f"https://api.apilayer.com/email_verification/{email}"
+    headers = {
+        "apikey": settings.EMAIL_VERIFICATION_API_KEY
+    }
+    
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        result = response.json()
+        return result.get('is_deliverable', False)
+    return False
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -28,7 +41,14 @@ def register(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name'] 
             phone_number = form.cleaned_data['phone_number']
+
             email = form.cleaned_data['email']
+            # Verify the email address
+            if not verify_email(email):
+                form.add_error('email', 'The email address is invalid or not deliverable.')
+                context = {'form': form}
+                return render(request, 'accounts/register.html', context)
+            
             password = form.cleaned_data['password']
             
 
